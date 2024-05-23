@@ -30,7 +30,6 @@ Python 3.6과 3.8에서는 paddlepaddle-gpu가 정상적으로 설치되나, pad
     ```bash
     sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1
     sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.7 2
-    sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.8 3
     sudo update-alternatives --config python3
     ```
 
