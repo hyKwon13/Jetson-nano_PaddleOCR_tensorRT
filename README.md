@@ -109,7 +109,6 @@ Python 3.7에 paddlepaddle-gpu를 설치하기 위해 whl 파일을 직접 다�
 
     이 오류는 psutil 패키지를 빌드하는 과정에서 Python 헤더 파일을 찾을 수 없어서 발생한 문제입니다. 이를 해결하려면 필요한 Python 헤더 파일을 설치해야 합니다.
 
-    다음 명령어를 통해 Python 헤더 파일과 빌드 도구를 설치해보세요.
     ```bash
     sudo apt-get install gcc python3-dev
     pip3 install paddleocr
