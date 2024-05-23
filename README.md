@@ -60,7 +60,7 @@ Python 3.7에 paddlepaddle-gpu를 설치하기 위해 whl 파일을 직접 다�
 
 
 2. **whl 파일 전송**
-   데스크탑에서 ssh를 통해 jetson nano를 사용중이므로 cmd에서 pscp 명령어를 사용하여 whl 파일을 jetson nano로 전송합니다.
+   </br>데스크탑에서 ssh를 통해 jetson nano를 사용중이므로 cmd에서 pscp 명령어를 사용하여 whl 파일을 jetson nano로 전송합니다.
    ```bash
     pscp C:\temp\* root@192.168.2.222:/temp
     ```
