@@ -150,7 +150,7 @@ Python 3.7에 paddlepaddle-gpu를 설치하기 위해 whl 파일을 직접 다�
     ```
 
 ## 설치 확인 예제
-다음 예제 코드를 통해 PaddleOCR이 GPU와 TensorRT를 제대로 사용하고 있는지 확인할 수 있습니다. 이를 통해 onnxruntime보다 더 빠른 추론 속도를 얻을 수 있습니다.
+다음 예제 코드를 통해 PaddleOCR이 GPU와 TensorRT를 제대로 사용하고 있는지 확인할 수 있습니다. 이를 통해 onnxruntime보다 더 빠른 추론 속도를 얻을 수 있습니다. 다만, TensorRT를 사용할 경우 초기 구동 시 많은 메모리를 사용하여 시작 속도가 느려질 수 있습니다.
 
 ```bash
 import cv2
@@ -193,7 +193,7 @@ rectangles = []
 
 ocr = PaddleOCR(
     use_gpu=True,
-    use_tensorrt=False,
+    use_tensorrt=True,
     use_angle_cls=False,
     lang='en',
     show_log=False,
