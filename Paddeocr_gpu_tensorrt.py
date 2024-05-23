@@ -30,7 +30,7 @@ def perform_ocr(frame, top_left_pt, bottom_right_pt, ocr):
 
 cv2.namedWindow('paddleocr')
 cv2.setMouseCallback('paddleocr', draw_rectangle)
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0)
 
 drawing = False
 top_left_pt, bottom_right_pt = (-1, -1), (-1, -1)
