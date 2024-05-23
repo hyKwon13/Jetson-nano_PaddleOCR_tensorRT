@@ -149,5 +149,75 @@ Python 3.7에 paddlepaddle-gpu를 설치하기 위해 whl 파일을 직접 다�
     export PYTHONPATH=~/project/paddle3.7/lib/python3.7/site-packages:$PYTHONPATH
     ```
 
-## 결론
-이 프로젝트를 통해 Jetson Nano에서 PaddleOCR을 GPU와 TensorRT를 사용하여 효과적으로 설치하고 실행하는 방법을 배울 수 있습니다. 각 단계에서 발생할 수 있는 오류와 그 해결 방법을 제공하여 설치 과정을 원활하게 진행할 수 있습니다.
+## 설치 확인 예제
+예제 코드를 통해 paddleocr이 정상적으로 gpu, tensorRt를 사용중인지 확인하세요. onnxruntime보다 더 빠른 추론 속도를 얻을 수 있습니다.
+
+```bash
+import cv2
+from paddleocr import PaddleOCR
+
+def draw_rectangle(event, x, y, flags, param):
+    global drawing, top_left_pt, bottom_right_pt, rectangles
+    if event == cv2.EVENT_LBUTTONDOWN:
+        drawing = True
+        top_left_pt = (x, y)
+        bottom_right_pt = (x, y)
+    elif event == cv2.EVENT_MOUSEMOVE:
+        if drawing:
+            bottom_right_pt = (x, y)
+    elif event == cv2.EVENT_LBUTTONUP:
+        drawing = False
+        bottom_right_pt = (x, y)
+        rectangles.append((top_left_pt, bottom_right_pt))
+
+def perform_ocr(frame, top_left_pt, bottom_right_pt, ocr):
+    if top_left_pt == (-1, -1) or bottom_right_pt == (-1, -1):
+        return
+    roi = frame[top_left_pt[1]:bottom_right_pt[1], top_left_pt[0]:bottom_right_pt[0]]
+    if roi.size == 0:
+        return
+    result = ocr.ocr(roi, cls=False)
+    result = result[0]
+    if result is not None:
+        for line in result:
+            print(line[1][0])
+            cv2.putText(frame, line[1][0], (top_left_pt[0], bottom_right_pt[1]+21), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
+cv2.namedWindow('paddleocr')
+cv2.setMouseCallback('paddleocr', draw_rectangle)
+cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+drawing = False
+top_left_pt, bottom_right_pt = (-1, -1), (-1, -1)
+rectangles = [] 
+
+ocr = PaddleOCR(
+    use_gpu=True,
+    use_tensorrt=False,
+    use_angle_cls=False,
+    lang='en',
+    show_log=False,
+)
+
+
+            
+for _ in range(30):
+    _, _ = cap.read()
+
+while True:
+    ret, frame = cap.read()
+
+    for rect in rectangles:
+        cv2.rectangle(frame, rect[0], rect[1], (0, 255, 0), 2)
+    
+    if drawing and top_left_pt != (-1, -1) and bottom_right_pt != (-1, -1):
+        cv2.rectangle(frame, top_left_pt, bottom_right_pt, (0, 255, 0), 2)
+    if not drawing and top_left_pt != (-1, -1) and bottom_right_pt != (-1, -1):
+        perform_ocr(frame, top_left_pt, bottom_right_pt, ocr)
+    cv2.imshow('paddleocr', frame)
+    if cv2.waitKey(1) & 0xFF == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+```bash
