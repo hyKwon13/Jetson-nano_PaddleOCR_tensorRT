@@ -38,7 +38,7 @@ rectangles = []
 
 ocr = PaddleOCR(
     use_gpu=True,
-    use_tensorrt=False,
+    use_tensorrt=True,
     use_angle_cls=False,
     lang='en',
     show_log=False,
