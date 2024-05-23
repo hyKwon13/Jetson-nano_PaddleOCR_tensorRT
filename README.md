@@ -57,7 +57,8 @@ Python 3.6과 3.8에서는 paddlepaddle-gpu가 정상적으로 설치되나, pad
 Python 3.7에 paddlepaddle-gpu를 설치하기 위해 whl 파일을 직접 다운로드하여 설치하였습니다.
 
 1. **paddlepaddle-gpu 다운로드**: [다운로드 링크](https://forums.developer.nvidia.com/t/paddlepaddle-for-jetson/242765)
-    - ![이미지](https://github.com/hyKwon13/Jetson-nano_PaddleOCR_CUDA/assets/117807382/1b8550a3-7d9e-4d7f-9285-487bbd8e73f4)
+    - ![이미지](https://github.com/hyKwon13/Jetson-nano_PaddleOCR_CUDA/assets/117807382/fd80b418-f0a8-4eb9-ad90-5e9ecf788fbb)
+
 
 2. **whl 파일 전송**
     ```bash
