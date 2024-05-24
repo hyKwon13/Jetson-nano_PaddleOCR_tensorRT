@@ -221,3 +221,14 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 ```
+
+## TIP
+Jetson Nano에서 더 큰 모델이나 데이터를 실행하려면 스왑 메모리 공간을 늘려야 할 수도 있습니다. 스왑 메모리 공간을 8GB로 늘리는 것이 좋습니다. 스왑 메모리 공간을 늘리려면 다음 단계를 참조하십시오.
+
+```bash
+sudo fallocate -l 8G /var/swapfile8G
+sudo chmod 600 /var/swapfile8G
+sudo mkswap /var/swapfile8G
+sudo swapon /var/swapfile8G
+sudo bash -c 'echo "/var/swapfile8G swap swap defaults 0 0" >> /etc/fstab'
+```
