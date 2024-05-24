@@ -232,3 +232,23 @@ sudo mkswap /var/swapfile8G
 sudo swapon /var/swapfile8G
 sudo bash -c 'echo "/var/swapfile8G swap swap defaults 0 0" >> /etc/fstab'
 ```
+
+fallocate 오류 발생시
+
+```bash
+fallocate: fallocate failed: Text file busy
+```
+
+기존 스왑 파일 비활성화
+```bash
+sudo swapoff -a
+```
+
+새 스왑 파일 생성
+```bash
+sudo fallocate -l 8G /var/swapfile8G
+sudo chmod 600 /var/swapfile8G
+sudo mkswap /var/swapfile8G
+sudo swapon /var/swapfile8G
+sudo bash -c 'echo "/var/swapfile8G swap swap defaults 0 0" >> /etc/fstab'
+```
