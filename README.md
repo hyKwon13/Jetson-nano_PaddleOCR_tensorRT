@@ -12,7 +12,7 @@ Jetson Nano에서 PaddleOCR을 GPU와 TensorRT를 사용하여 실행하는 방�
 
 3. **balenaEtcher 사용**: balenaEtcher 프로그램을 사용하여 microSD 카드에 이미지 설치.
     - [Etcher 다운로드](https://etcher.balena.io/)
-
+ 
 ## Python 3.7 설치
 Python 3.6과 3.8에서는 paddlepaddle-gpu가 정상적으로 설치되나, paddleocr과의 호환성 문제로 Python 3.7을 설치하였습니다.
 
